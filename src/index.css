@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #faf9f6;
+    --text: #1a1b1e;
+    --text-2: #4a4b4e;
+    --accent: #2f6eab;
+    --accent-rgb: 47, 110, 171;
+    --border: #e5e5e5;
+    --surface: #ffffff;
+    --gradient-glow: radial-gradient(
+      circle at center,
+      rgba(47, 110, 171, 0.15) 0%,
+      rgba(47, 110, 171, 0.05) 50%,
+      transparent 100%
+    );
+    --gradient-accent: linear-gradient(135deg, #2f6eab, #1f5a94);
+
+    @apply antialiased text-text bg-body;
+  }
+
+  body {
+    @apply m-0 font-sans;
+    background: radial-gradient(circle at top left, rgba(47, 110, 171, 0.06), transparent 55%),
+      var(--bg);
+  }
+
+  #app {
+    @apply min-h-screen;
+  }
+
+  a {
+    @apply text-brand-blue font-medium;
+  }
+
+  a:hover {
+    @apply text-blue-600;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
