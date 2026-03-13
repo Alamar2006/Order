@@ -1,6 +1,6 @@
 import { FooterOfferModal } from './FooterOfferModal';
 import { FooterPolicyModal } from './FooterPolicyModal';
-import { FooterRecoveryModal } from './FooterRecoveryModal';
+import { FooterRecoveryModal } from './FooterRecoveryModal/FooterRecoveryModal';
 
 export const FooterModalContainer = ({ isOfferOpen, isPolicyOpen, isRecoveryOpen, onClose }) => (
   <>
