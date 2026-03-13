@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 
 const TRUST_DATA = [
-  { icon: '★', label: 'отзывов', value: '4.9', suffix: '(1 247 отзывов)' },
-  { icon: '✓', label: 'купили', value: '2 340+' },
+  { icon: '★', label: 'отзывов', value: '4.9', suffix: '(832 отзывов)' },
+  { icon: '✓', label: 'купили', value: '2 640+' },
   { icon: '⚡', label: 'доставка', value: 'Мгновенная', suffix: 'доставка' }
 ];
 

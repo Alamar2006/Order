@@ -52,6 +52,8 @@ export const PlannerLightbox = ({
           src={activeImage} 
           alt={title}
           className={IMAGE_CLASSES}
+          loading="lazy"   
+          decoding="async"
         />
         
         <div className={COUNTER_CLASSES}>

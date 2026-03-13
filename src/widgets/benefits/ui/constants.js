@@ -24,8 +24,8 @@ export const BENEFITS = [
   ];
   
     export const HEADER_CONTENT = {
-    title: 'Почему ЛайфСтатс — это удобно',
-    subtitle: 'ЛайфСтатс собрал в себе лучшие практики по планированию задач, привычек и финансов в одном наборе понятных шаблонов.',
+    title: 'Почему LifeTrack — это удобно',
+    subtitle: 'LifeTrack собрал в себе лучшие практики по планированию задач, привычек и финансов в одном наборе понятных шаблонов.',
   };
 
 
@@ -39,10 +39,10 @@ export const BENEFITS = [
           top: '-30%',
           left: '50%',
           transform: 'translateX(-50%)',
-          width: '1600px',
-          height: '1600px',
+          width: '900px',
+          height: '900px',
           background: 'var(--gradient-glow)',
-          filter: 'blur(120px)',
+          filter: 'blur(40px)',
         },
       },
       {
@@ -54,7 +54,7 @@ export const BENEFITS = [
           width: '1000px',
           height: '1000px',
           background: 'var(--gradient-glow)',
-          filter: 'blur(120px)',
+          filter: 'blur(40px)',
           animationDelay: '-10s',
         },
       },

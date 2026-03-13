@@ -3,7 +3,7 @@ import { useCallback, useState } from 'preact/hooks';
 import { PaymentModal } from '../../../../shared/ui/paymentFolder/Payment.jsx';
 
 // Константы классов
-const CARD_CLASSES = "product-catalog__card grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-4 md:gap-6 bg-[--surface] backdrop-blur border border-[--border] rounded-2xl p-4 md:p-6 transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg w-full max-w-full";
+const CARD_CLASSES = "product-catalog__card grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-4 md:gap-6 bg-[--surface] backdrop-blur border border-[--border] rounded-2xl p-4 md:p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg w-full max-w-full";
 const BADGE_CLASSES = "product-catalog__sale-badge absolute top-2 left-2 z-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-xl shadow-lg";
 const BUTTON_SECONDARY_CLASSES = "product-catalog__btn product-catalog__btn--secondary inline-flex items-center justify-center px-3 py-2.5 text-sm font-semibold tracking-wide border border-[--border] rounded-xl bg-[--surface] text-[--text] hover:bg-[--surface-soft] hover:border-[--text-2] hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[--accent] focus-visible:outline-offset-4 w-full";
 const BUTTON_PRIMARY_CLASSES = "product-catalog__btn product-catalog__btn--primary inline-flex items-center justify-center px-3 py-2.5 text-sm font-semibold tracking-wide bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 focus-visible:outline-2 focus-visible:outline-[--accent] focus-visible:outline-offset-4 w-full";

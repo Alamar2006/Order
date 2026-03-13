@@ -1,23 +1,12 @@
 export const PLANNER_STYLES = `
-  @keyframes catalogBreathe {
-    0%, 100% {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.4;
-      transform: scale(1.1);
-    }
-  }
-  
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translate3d(0,20px,0);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0,0,0);
     }
   }
   
@@ -33,11 +22,11 @@ export const PLANNER_STYLES = `
   @keyframes detailSlideUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translate3d(0,30px,0);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0,0,0);
     }
   }
   

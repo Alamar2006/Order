@@ -8,6 +8,8 @@ export function HeroVisual() {
                 src="/assets/hero_picture.avif" 
                 alt="Планер для задач, привычек и финансов" 
                 className="w-full h-full object-cover rounded-xl"
+                loading="lazy"   
+            decoding="async"
               />
             </div>
           </div>

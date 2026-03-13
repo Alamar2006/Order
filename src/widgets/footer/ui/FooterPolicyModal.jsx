@@ -12,10 +12,19 @@ export const FooterPolicyModal = ({ isOpen, onClose }) => (
     </p>
     <div className="space-y-4 text-sm text-[--text-2]">
       {MODAL_TEXTS.policy.sections.map((section, index) => (
-        <p key={index}>
-          <strong className="text-[--text]">{section.title}</strong><br />
-          {section.content}
-        </p>
+        <div key={index}>
+          <strong className="text-[--text] block mb-2">{section.title}</strong>
+          {section.content.split('\n\n').map((paragraph, i) => (
+            <p key={i} className="mb-2 last:mb-0">
+              {paragraph.split('\n').map((line, j) => (
+                <span key={j}>
+                  {line}
+                  {j < paragraph.split('\n').length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          ))}
+        </div>
       ))}
     </div>
   </FooterModal>

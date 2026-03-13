@@ -1,6 +1,6 @@
 import { memo } from 'preact/compat';
 
-const NAV_BUTTON_CLASSES = "product-pack__nav absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/10 backdrop-blur border border-black/15 rounded-full text-[--text] cursor-pointer transition-all duration-300 hover:bg-[--surface-soft] hover:border-[--accent] hover:scale-110 hover:text-[--accent] active:scale-95 focus-visible:outline-2 focus-visible:outline-[rgba(var(--accent-rgb),0.5)] focus-visible:outline-offset-4 z-10";
+const NAV_BUTTON_CLASSES = "product-pack__nav absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/30 border border-black/15 rounded-full text-[--text] cursor-pointer transition-all duration-300 hover:bg-[--surface-soft] hover:border-[--accent] hover:scale-110 hover:text-[--accent] active:scale-95 focus-visible:outline-2 focus-visible:outline-[rgba(var(--accent-rgb),0.5)] focus-visible:outline-offset-4 z-10";
 
 export const BundleNavigation = memo(({ onPrev, onNext }) => (
   <>

@@ -8,5 +8,9 @@ export default defineConfig({
     allowedHosts: [
       'presently-primal-nighthawk.cloudpub.ru/'
     ]
+  },
+  headers: {
+    'Content-Type': 'application/javascript',
+    'X-Content-Type-Options': 'nosniff'
   }
 })

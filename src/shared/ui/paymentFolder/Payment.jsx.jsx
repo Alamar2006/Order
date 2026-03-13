@@ -1,5 +1,5 @@
 import { Modal } from '../Modal.jsx';
-import { useState } from 'preact/hooks';
+import { useState, useRef, useEffect } from 'preact/hooks';
 import { FooterOfferModal } from '../../../widgets/footer/ui/FooterOfferModal.jsx';
 import { FooterPolicyModal } from '../../../widgets/footer/ui/FooterPolicyModal.jsx';
 
@@ -11,7 +11,6 @@ export const PaymentModal = ({
   onClose,
   productName = "Планер Weekly",
   productPrice = 1290,
-  onSuccess,
   requiredConsents = [
     { id: 'terms', label: 'Согласие с условиями оферты', required: true },
     { id: 'privacy', label: 'Согласие на обработку персональных данных', required: true }
@@ -19,9 +18,43 @@ export const PaymentModal = ({
 }) => {
 
   const [consents, setConsents] = useState({});
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
   const [isPolicyOpen, setIsPolicyOpen] = useState(false);
   const [isOfferOpen, setIsOfferOpen] = useState(false);
+
+  const emailRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      emailRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  const emailInputClass =
+  "w-full px-4 py-3 rounded-xl border border-[--border] bg-[--surface] text-[--text] outline-none transition-all duration-200 focus:border-[--accent] focus:ring-2 focus:ring-[rgba(var(--accent-rgb),0.2)]";
+
+  const validateEmail = (value) => {
+
+    const emailRegex = /\S+@\S+\.\S+/;
+
+    if (!value) {
+      setEmailError("Введите email");
+      return false;
+    }
+
+    if (!emailRegex.test(value)) {
+      setEmailError("Неверный формат email");
+      return false;
+    }
+
+    setEmailError("");
+    return true;
+
+  };
 
   const handleConsentChange = (id) => {
     setConsents(prev => ({
@@ -30,29 +63,54 @@ export const PaymentModal = ({
     }));
   };
 
+  const bothConsentsChecked = requiredConsents
+    .filter(c => c.required)
+    .every(c => consents[c.id]);
+
+  const isFormValid = bothConsentsChecked && !emailError && email;
+
   const handlePayment = async () => {
 
-    const requiredUnchecked = requiredConsents
-      .filter(c => c.required && !consents[c.id]);
-
-    if (requiredUnchecked.length > 0) {
-      alert('Необходимо согласиться с условиями оферты и обработкой персональных данных');
-      return;
-    }
+    if (!validateEmail(email)) return;
 
     setIsProcessing(true);
 
     try {
+      const orderId = crypto.randomUUID();
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          productName,
+          amount: productPrice,
+          email,
+          orderId,
+          successUrl: `${window.location.origin}/payment-success`,
+          failedUrl: `${window.location.origin}/payment-failed`
+        })
+      });
+      
 
-      if (onSuccess) {
-        await onSuccess({ consents });
+      const data = await response.json();
+      if(!response.ok) {
+        throw new Error(`Ошибка сервера: ${response.status}`);
       }
+      if (data.confirmation_url) {
 
-      onClose();
+        setIsRedirecting(true);
+
+        setTimeout(() => {
+          window.location.href = data.confirmation_url;
+        }, 900);
+
+      }
 
     } catch (error) {
 
-      console.error('Payment error:', error);
+      console.error(error);
+      alert("Ошибка оплаты");
 
     } finally {
 
@@ -71,10 +129,6 @@ export const PaymentModal = ({
     e.preventDefault();
     setIsOfferOpen(true);
   };
-
-  const bothConsentsChecked = requiredConsents
-    .filter(c => c.required)
-    .every(c => consents[c.id]);
 
   return (
     <>
@@ -118,6 +172,35 @@ export const PaymentModal = ({
                 {productPrice.toLocaleString()} ₽
               </span>
             </div>
+
+          </div>
+
+          <div className="mb-6">
+
+            <label className="text-sm font-medium text-[--text] mb-2 block">
+              Email для получения продукта (перепроверяйте)
+            </label>
+
+            <input
+              ref={emailRef}
+              type="email"
+              placeholder="example@mail.com"
+              value={email}
+              onInput={(e) => {
+                setEmail(e.target.value);
+                validateEmail(e.target.value);
+              }}
+              className={`
+                ${emailInputClass}
+                ${emailError ? "border-red-500 focus:ring-red-200" : ""}
+              `}
+            />
+
+            {emailError && (
+              <p className="text-red-500 text-xs mt-2">
+                {emailError}
+              </p>
+            )}
 
           </div>
 
@@ -185,16 +268,32 @@ export const PaymentModal = ({
             </button>
 
             <button
-              className="flex-1 py-3 px-6 text-sm font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+              className="flex-1 py-3 px-6 text-sm font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center justify-center gap-2 disabled:opacity-60"
               onClick={handlePayment}
-              disabled={isProcessing || !bothConsentsChecked}
+              disabled={!isFormValid || isProcessing}
             >
-              {isProcessing
-                ? 'Обработка...'
-                : `Оплатить ${productPrice.toLocaleString()} ₽`}
+
+              {isProcessing ? (
+                <>
+                  <svg className="animate-spin" width="18" height="18" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="3" opacity="0.25"/>
+                    <path d="M22 12a10 10 0 0 1-10 10" stroke="white" strokeWidth="3"/>
+                  </svg>
+                  Обработка...
+                </>
+              ) : (
+                `Оплатить ${productPrice.toLocaleString()} ₽`
+              )}
+
             </button>
 
           </div>
+
+          {isRedirecting && (
+            <p className="text-center text-sm text-[--text-2] mt-4 animate-pulse">
+              Подготовка платежа...
+            </p>
+          )}
 
         </div>
 
