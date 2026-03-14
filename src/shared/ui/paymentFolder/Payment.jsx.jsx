@@ -9,7 +9,7 @@ const CLOSE_BUTTON_CLASSES =
 export const PaymentModal = ({
   isOpen,
   onClose,
-  productName = "Планер Weekly",
+  product_id = "Планер Weekly",
   productPrice = 1290,
   requiredConsents = [
     { id: 'terms', label: 'Согласие с условиями оферты', required: true },
@@ -76,17 +76,15 @@ export const PaymentModal = ({
     setIsProcessing(true);
 
     try {
-      const orderId = crypto.randomUUID();
       const response = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/create-payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          productName,
           amount: productPrice,
           email,
-          orderId,
+          product_id,
           successUrl: `${window.location.origin}/payment-success`,
           failedUrl: `${window.location.origin}/payment-failed`
         })
@@ -163,7 +161,7 @@ export const PaymentModal = ({
             <div className="flex justify-between items-center">
               <span className="font-medium">Товар:</span>
               <strong className="text-[--text] font-semibold">
-                {productName}
+                {product_id}
               </strong>
             </div>
 

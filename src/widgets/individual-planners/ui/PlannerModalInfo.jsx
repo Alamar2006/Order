@@ -84,7 +84,7 @@ export const PlannerModalInfo = ({ planner }) => {
       <PaymentModal
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        productName={planner.title}
+        product_id={planner.title}
         productPrice={planner.price}
       />
   

@@ -72,7 +72,7 @@ export const PlannerCard = memo(function PlannerCard({ planner, onOpenDetails })
             onClick={handleOpenDetails}
           >
             Что внутри
-          </button>
+          </button> 
 
           <button 
             onClick={() => setIsOpen(true)} 
@@ -87,7 +87,7 @@ export const PlannerCard = memo(function PlannerCard({ planner, onOpenDetails })
         <PaymentModal
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
-          productName={planner.title}
+          product_id={planner.title}
           productPrice={planner.price}
         />
 

@@ -36,7 +36,7 @@ export const BundlePricing = memo(({ timer = '06:27:25' }) => {
       <PaymentModal
         isOpen={isOpen} 
         onClose={() => setIsOpen(false)}
-        productName="Набор LifeTrack (4 планера)"
+        product_id="Набор LifeTrack (4 планера)"
         productPrice={1897}
       />
     </div>
