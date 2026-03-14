@@ -77,7 +77,7 @@ export const PaymentModal = ({
 
     try {
       const orderId = crypto.randomUUID();
-      const response = await fetch("/api/create-payment", {
+      const response = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/create-payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -93,10 +93,11 @@ export const PaymentModal = ({
       });
       
 
-      const data = await response.json();
+      
       if(!response.ok) {
         throw new Error(`Ошибка сервера: ${response.status}`);
       }
+      const data = await response.json();
       if (data.confirmation_url) {
 
         setIsRedirecting(true);

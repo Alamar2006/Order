@@ -1,5 +1,5 @@
 export const sendCode = async (email) => {
-    const res = await fetch("/api/auth/send-code", {
+    const res = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/auth/send-code", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const sendCode = async (email) => {
   };
   
   export const verifyCode = async (email, code) => {
-    const res = await fetch("/api/auth/verify-code", {
+    const res = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/auth/verify-code", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
