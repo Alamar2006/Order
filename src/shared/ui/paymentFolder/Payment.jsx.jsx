@@ -9,7 +9,7 @@ const CLOSE_BUTTON_CLASSES =
 export const PaymentModal = ({
   isOpen,
   onClose,
-  product_id = "Планер Weekly",
+  product_id = "weekly",
   productPrice = 1290,
   requiredConsents = [
     { id: 'terms', label: 'Согласие с условиями оферты', required: true },
@@ -82,7 +82,6 @@ export const PaymentModal = ({
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          amount: productPrice,
           email,
           product_id,
           successUrl: `${window.location.origin}/payment-success`,
