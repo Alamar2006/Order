@@ -5,7 +5,7 @@ export const PLANNERS = [
       title: 'Недельный планер',
       description:
         'Помогает видеть всю неделю целиком, планировать задачи, цели и привычки и держать баланс между работой и личной жизнью.',
-      price: '1 390',
+      price: '1 090',
       oldPrice: '2 090',
       image: '/assets/planners/week/week1.avif',
       gallery: [
@@ -27,7 +27,7 @@ export const PLANNERS = [
       title: 'Финансовый трекер',
       description:
         'Дает ясность в деньгах: отслеживаете доходы и расходы, понимаете баланс и управляете финансами без сложных формул.',
-      price: '1 690',
+      price: '1 290',
       oldPrice: '2 790',
       image: '/assets/planners/finance/finance1.avif',
       gallery: [
@@ -49,7 +49,7 @@ export const PLANNERS = [
       title: 'Трекер задач',
       description:
         'Наводит порядок в делах и помогает сосредоточиться на приоритетах. Меньше хаоса, больше выполненных задач и ощущения контроля.',
-      price: '1 290',
+      price: '990',
       oldPrice: '1 990',
       image: '/assets/planners/tasks/task1.avif',
       gallery: [
@@ -74,7 +74,7 @@ export const PLANNERS = [
       title: 'Трекер привычек',
       description:
         'Помогает выстроить полезные привычки без давления и перегруза. Ты наглядно видишь свой прогресс и понимаешь, что действительно работает.',
-      price: '1 590',
+      price: '1 190',
       oldPrice: '2390',
       image: '/assets/planners/habits/habit1.avif',
       gallery: [

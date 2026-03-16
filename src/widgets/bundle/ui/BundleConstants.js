@@ -22,7 +22,7 @@ export const INCLUDED_ITEMS = [
   ];
   
   export const PRICING = {
-    currentPrice: '1 897 ₽',
+    currentPrice: '1 490 ₽',
     oldPrice: '9 260 ₽',
     savings: '7 363 ₽',
   };
