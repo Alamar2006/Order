@@ -2,7 +2,7 @@ import { memo } from 'preact/compat';
 import { useEffect, useState } from 'preact/hooks';
 
 const STORAGE_KEY = 'bundle_timer_end';
-const DURATION = 7 * 60 * 60 * 1000; // 7 часов в ms
+const DURATION = 6 * 60 * 60 * 1000 + 45 * 60 * 1000 + 80 * 1000; 
 
 // формат времени
 function formatTime(ms) {
