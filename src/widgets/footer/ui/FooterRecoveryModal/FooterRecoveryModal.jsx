@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "preact/hooks";
 
 import { FooterModal } from "../FooterModal";
@@ -34,7 +32,7 @@ export const FooterRecoveryModal = ({ isOpen, onClose }) => {
       setStep("email");
       setCode(["", "", "", ""]);
       setError(null);
-      setDownloadUrl([])
+      setDownloadUrl([]);
     }
   }, [isOpen]);
 
@@ -68,7 +66,14 @@ export const FooterRecoveryModal = ({ isOpen, onClose }) => {
     try {
       const data = await verifyCode(email, otp);
 
-      setDownloadUrl(data.downloadUrl || []);
+      // НОРМАЛИЗАЦИЯ
+      const urls = Array.isArray(data.downloadUrl)
+        ? data.downloadUrl
+        : data.downloadUrl
+        ? [data.downloadUrl]
+        : [];
+
+      setDownloadUrl(urls);
 
       setStep("success");
     } catch {
