@@ -5,13 +5,24 @@ export const SuccessStep = ({ downloadUrl }) => {
         <p class="text-sm text-[--text-2]">
           Это и вправду вы! Вот ваша ссылка для скачивания:
         </p>
-  
-        <a
-          href={downloadUrl}
-          class="px-6 py-3 text-white font-semibold rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 hover:shadow-lg"
-        >
-          Скачать файл
-        </a>
+        {downloadUrl.map((url, index) => (
+      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded">
+        <span className="text-sm truncate flex-1">
+          {url.split('/').pop() || `Файл ${index + 1}`}
+        </span>
+      <a
+        href={url}
+        download
+        className="ml-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
+      >
+        Скачать
+      </a>
+    </div>
+     ))}
+        
       </div>
     );
   };
+
+
+  

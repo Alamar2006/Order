@@ -25,7 +25,7 @@ export const FooterRecoveryModal = ({ isOpen, onClose }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const [downloadUrl, setDownloadUrl] = useState(null);
+  const [downloadUrl, setDownloadUrl] = useState([]);
 
   const { time, start } = useCountdown(30);
 
@@ -34,6 +34,7 @@ export const FooterRecoveryModal = ({ isOpen, onClose }) => {
       setStep("email");
       setCode(["", "", "", ""]);
       setError(null);
+      setDownloadUrl([])
     }
   }, [isOpen]);
 
@@ -67,7 +68,7 @@ export const FooterRecoveryModal = ({ isOpen, onClose }) => {
     try {
       const data = await verifyCode(email, otp);
 
-      setDownloadUrl(data.downloadUrl);
+      setDownloadUrl(data.downloadUrl || []);
 
       setStep("success");
     } catch {
