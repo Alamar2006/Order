@@ -59,22 +59,16 @@ export const FooterRecoveryModal = ({ isOpen, onClose }) => {
 
   const handleVerify = async (otp) => {
     if (!otp || otp.length !== 4) return;
-
+  
     setLoading(true);
     setError(null);
-
+  
     try {
       const data = await verifyCode(email, otp);
-
-      // НОРМАЛИЗАЦИЯ
-      const urls = Array.isArray(data.downloadUrl)
-        ? data.downloadUrl
-        : data.downloadUrl
-        ? [data.downloadUrl]
-        : [];
-
-      setDownloadUrl(urls);
-
+  
+      // backend возвращает массив
+      setDownloadUrl(Array.isArray(data) ? data : []);
+  
       setStep("success");
     } catch {
       setError("Неверный код");

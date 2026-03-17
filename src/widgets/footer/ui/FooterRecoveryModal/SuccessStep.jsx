@@ -1,33 +1,7 @@
 export const SuccessStep = ({ downloadUrl = [] }) => {
 
-  const handleDownload = async (url, index) => {
-    try {
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error("Ошибка загрузки файла");
-      }
-
-      const blob = await response.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
-
-      const link = document.createElement("a");
-      link.href = blobUrl;
-
-      const fileName =
-        url.split("/").pop()?.split("?")[0] || `file-${index + 1}`;
-
-      link.download = fileName;
-
-      document.body.appendChild(link);
-      link.click();
-
-      link.remove();
-      window.URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error("Download error:", error);
-      alert("Не удалось скачать файл");
-    }
+  const handleDownload = (url) => {
+    window.open(url, "_blank");
   };
 
   return (
@@ -46,8 +20,9 @@ export const SuccessStep = ({ downloadUrl = [] }) => {
           </span>
 
           <button
-            onClick={() => handleDownload(url, index)}
-            className="ml-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
+            type="button"
+            onClick={() => handleDownload(url)}
+            className="ml-3 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm cursor-pointer"
           >
             Скачать
           </button>
