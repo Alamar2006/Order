@@ -37,7 +37,7 @@ export const BundlePricing = memo(({ timer = '06:27:25' }) => {
         isOpen={isOpen} 
         onClose={() => setIsOpen(false)}
         product_id="Набор LifeTrack (4 планера)"
-        productPrice={1897}
+        productPrice={1490}
       />
     </div>
   );
