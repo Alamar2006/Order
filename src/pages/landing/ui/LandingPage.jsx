@@ -11,7 +11,7 @@ export function LandingPage() {
     <div className="min-h-screen text-text bg-body">
       <Header />
       <HeroSection /> 
-
+   
       
       <div className="w-full border-b border-[--border]"></div>
       
