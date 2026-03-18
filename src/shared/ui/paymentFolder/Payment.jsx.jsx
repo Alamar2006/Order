@@ -96,6 +96,7 @@ export const PaymentModal = ({
       }
       const data = await response.json();
       if (data.confirmation_url) {
+        localStorage.setItem("payment_in_progress", "true");
 
         setIsRedirecting(true);
 
