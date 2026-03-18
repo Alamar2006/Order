@@ -76,7 +76,7 @@ export const PaymentModal = ({
     setIsProcessing(true);
 
     try {
-      const response = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/create-payment", {
+      const response = await fetch("https://lifetrack-tau.vercel.app/create-payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

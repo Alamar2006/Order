@@ -1,5 +1,5 @@
 export const sendCode = async (email) => {
-    const res = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/auth/send-code", {
+    const res = await fetch("https://lifetrack-tau.vercel.app/auth/send-code", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const sendCode = async (email) => {
   };
   
   export const verifyCode = async (email, code) => {
-    const res = await fetch("https://wonderingly-tuneful-emu.cloudpub.ru/auth/verify-code", {
+    const res = await fetch("https://lifetrack-tau.vercel.app/auth/verify-code", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
