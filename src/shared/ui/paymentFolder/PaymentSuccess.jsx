@@ -6,20 +6,15 @@ export const PaymentSuccess = () => {
     const params = new URLSearchParams(window.location.search);
 
     const status = params.get("status");
-    const paymentId = params.get("payment_id");
 
-    // ❗ если нет payment_id → это не платёж → уводим на failed
-    if (!paymentId) {
-      window.location.href = "/payment-failed";
-      return;
-    }
-
-    // ❗ если статус есть и он не succeeded → тоже failed
+    // ❗ Проверяем ТОЛЬКО status
+    // если он есть и НЕ succeeded → ошибка
     if (status && status !== "succeeded") {
       window.location.href = "/payment-failed";
       return;
     }
 
+    // ❗ если status нет вообще — считаем успехом (костыль)
   }, []);
 
   return (
@@ -42,7 +37,6 @@ export const PaymentSuccess = () => {
 
         <p className="text-gray-500 mb-8">
           Ссылка для скачивания отправлена на ваш email.
-          Письмо может прийти в течение 1-2 минут.
         </p>
 
         <button
