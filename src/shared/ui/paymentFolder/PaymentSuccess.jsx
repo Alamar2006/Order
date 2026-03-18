@@ -1,3 +1,5 @@
+import { useEffect } from 'preact/hooks';
+
 export const PaymentSuccess = () => {
 
   useEffect(() => {
